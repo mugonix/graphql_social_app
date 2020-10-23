@@ -9,12 +9,10 @@ import PostCard from '../components/PostCard';
 function Home(props) {
     const {
         loading,
-        data
+        data:{ getPosts:posts } = {}
       } = useQuery(FETCH_POSTS_QUERY);
     
-      if(data){
-        console.log(data);
-    }
+      
 
     return (
         <Grid columns={3}>
@@ -27,8 +25,8 @@ function Home(props) {
         ) : (
            
           <Transition.Group>
-            {data.getPosts &&
-              data.getPosts.map((post) => (
+            {posts &&
+            posts.map((post) => (
                 <Grid.Column key={post.id} style={{ marginBottom: 20 }}>
                   <PostCard post={post} />
                 </Grid.Column>
